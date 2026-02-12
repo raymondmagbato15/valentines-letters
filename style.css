@@ -1,0 +1,129 @@
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to bottom,#a175a7,#e2c6f5);
+  font-family:Arial, sans-serif;
+}
+
+/* Envelope container */
+.envelope{
+  position:relative;
+  width:260px;
+  height:170px;
+  cursor:pointer;
+  perspective:1000px;
+}
+
+/* Envelope body */
+.body{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#d4af37,#b8962e);
+  border-radius:8px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.3);
+  z-index:1;
+}
+
+/* Flap  */
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:85px;
+  background:#c2952c;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform 0.8s ease;
+  z-index:3;
+}
+
+/* Heart */
+.flap::after{
+  content:"❤";
+  position:absolute;
+  top: 80%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:35px;
+  color:#e74c3c;
+  text-shadow:0 3px 6px rgba(0,0,0,0.3);
+}
+
+/* Letter */
+.letter{
+  position:absolute;
+  top:25px;
+  left:20px;
+  width:220px;
+  height:120px;
+  background:#96837e;
+  border-radius:6px;
+  padding:15px;
+  box-sizing:border-box;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+  z-index:2;
+  overflow-y:auto;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.letter h2{
+  margin:5px 0;
+}
+
+.letter p{
+  font-size:13px;
+}
+
+/* OPEN STATE */
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+  opacity:1;
+  transform:translateY(-25px);
+}
+
+/* Body: center horizontally, not vertically */
+body {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  background: #a175a7;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container: stack envelope + instruction vertically */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: center; /* optional, center envelope + instruction vertically */
+}
+
+/* Instruction text */
+.instruction {
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;       /* space sa pagitan ng envelope at instruction */
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+
+  /* Optional: bounce */
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
